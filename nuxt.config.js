@@ -7,11 +7,11 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: 'My iTunes Search Program',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: 'My iTunes Search Nuxt.js Project' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -28,14 +28,17 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/style/app.styl'
+    '~/assets/style/app.styl',
+    '~/assets/style/animate.css',
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vuetify'
+    '@/plugins/vuetify',
+    '@/plugins/vee-validate',
+    '@/plugins/mixin',
   ],
 
   /*

@@ -7,59 +7,50 @@
       xs12
       sm8
       md6>
-      <div class="text-xs-center">
-        <logo/>
-        <vuetify-logo/>
-      </div>
-      <v-card>
-        <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>For more information on Vuetify, check out the <a
-            href="https://vuetifyjs.com"
-            target="_blank">documentation</a>.</p>
-          <p>If you have questions, please join the official <a
-            href="https://chat.vuetifyjs.com/"
-            target="_blank"
-            title="chat">discord</a>.</p>
-          <p>Find a bug? Report it on the github <a
-            href="https://github.com/vuetifyjs/vuetify/issues"
-            target="_blank"
-            title="contribute">issue board</a>.</p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank">Nuxt Documentation</a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank">Nuxt GitHub</a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer/>
-          <v-btn
-            color="primary"
-            flat
-            nuxt
-            to="/inspire">Continue</v-btn>
-        </v-card-actions>
-      </v-card>
+      <h1>Search iTunes</h1>
+      <br>
+      <v-form @submit.prevent="submit">
+        <v-text-field
+          v-validate="'required|max:50'"
+          v-model="search"
+          :error-messages="errors.collect('artist name')"
+          data-vv-name="artist name"
+          type="text"
+          placeholder="Enter Artist Name"
+          append-icon="search"
+          required
+          counter="50"
+          color="blue"
+          autofocus />
+      </v-form>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
+  data() {
+    return {
+      search: ''
+    }
+  },
+
+  methods: {
+    async submit(event) {
+      let validated = await this.$validator.validateAll();
+      if(validated) {
+        this.$router.push(`results/${this.search}`);
+      }
+    }
   }
 }
 </script>
+
+<style lang="sass" scoped>
+  h1
+    padding: 20px 0
+  div.flex
+    min-width: 50%
+    &>h1
+      text-align: center
+</style>
