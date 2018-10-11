@@ -3,6 +3,7 @@
     :clipped-left="clipped"
     :color="toolbarColor"
     fixed
+    dark
     app
   >
     <v-toolbar-side-icon
@@ -45,9 +46,9 @@
     },
     data() {
       return {
-        title: 'My iTunes Search Program'
+        title: 'Vue Todo Program'
       }
-    }
+    },
   }
 </script>
 

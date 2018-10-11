@@ -44,7 +44,8 @@
 </template>
 
 <script>
-    import Toolbar from '~/components/Toolbar.vue'
+    import { mapGetters } from 'vuex';
+    import Toolbar from '~/components/Toolbar.vue';
 
     export default {
       components: {
@@ -58,13 +59,27 @@
           clipped: false,
           drawer: false,
           fixed: false,
-          items: [
-            { icon: 'apps', title: 'Welcome', to: '/' },
-            { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
-          ],
           miniVariant: false,
           right: true,
           rightDrawer: false,
+        }
+      },
+
+      computed: {
+        ...mapGetters('authentication', [
+          'isLoggedIn',
+        ]),
+        items() {
+          if(this.isLoggedIn) {
+            return [
+              { icon: 'playlist_add_check', title: 'Projects', to: '/' },
+              { icon: 'exit_to_app', title: 'Logout', to: '/inspire' }
+            ]
+          }
+          return [
+            { icon: 'person_add', title: 'Register', to: '/inspire' },
+            { icon: 'fingerprint', title: 'Login', to: '/inspire' }
+          ]
         }
       },
 
