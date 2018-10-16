@@ -73,12 +73,11 @@
           if(this.isLoggedIn) {
             return [
               { icon: 'playlist_add_check', title: 'Projects', to: '/' },
-              { icon: 'exit_to_app', title: 'Logout', to: '/inspire' }
             ]
           }
           return [
-            { icon: 'person_add', title: 'Register', to: '/inspire' },
-            { icon: 'fingerprint', title: 'Login', to: '/inspire' }
+            { icon: 'person_add', title: 'Register', to: '/register' },
+            { icon: 'fingerprint', title: 'Login', to: '/login' }
           ]
         }
       },

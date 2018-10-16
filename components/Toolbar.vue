@@ -19,15 +19,28 @@
     </v-toolbar-title>
     <v-spacer />
     <v-btn
+      v-if="isLoggedIn"
       :class="textColor"
-      to="/"
-      icon>
-      <v-icon>refresh</v-icon>
+      flat
+      @click="logout"
+    >
+      <v-icon class="mr-2">exit_to_app</v-icon>
+      Logout
+    </v-btn>
+    <v-btn
+      v-else
+      :class="textColor"
+      :to="{ name: 'login' }"
+      flat>
+      <v-icon class="mr-2">fingerprint</v-icon>
+      Login
     </v-btn>
   </v-toolbar>
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex';
+
   export default {
     name: "Toolbar",
     props: {
@@ -48,6 +61,16 @@
       return {
         title: 'Vue Todo Program'
       }
+    },
+    computed: {
+      ...mapGetters('authentication', [
+        'isLoggedIn',
+      ]),
+    },
+    methods: {
+      ...mapActions('authentication', [
+        'logout',
+      ]),
     },
   }
 </script>

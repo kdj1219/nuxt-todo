@@ -1,4 +1,9 @@
 const pkg = require('./package')
+if(process.env.NODE_ENV === 'production') {
+  var API_URL = 'http://localhost:3333';
+} else {
+  var API_URL = 'http://localhost:3333';
+}
 
 module.exports = {
   mode: 'universal',
@@ -39,6 +44,8 @@ module.exports = {
     '@/plugins/vuetify',
     '@/plugins/vee-validate',
     '@/plugins/mixin',
+    '@/plugins/http',
+    // '@/plugins/localStorage',
   ],
 
   /*
@@ -53,6 +60,13 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    prefix: '/api',
+    timeout: 5000,
+    proxy: true
+  },
+
+  proxy: {
+    '/api': { target: API_URL }
   },
 
   /*
