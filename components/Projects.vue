@@ -59,7 +59,7 @@ export default {
   methods: {
     projectClicked(project) {
       this.setCurrentProject(project);
-      // this.fetchTasksForProject(project);
+      this.fetchTasksForProject(project);
     },
     ...mapMutations('projects', [
       'setNewProjectName',
@@ -73,9 +73,9 @@ export default {
       'deleteProject',
       'fetchProjects',
     ]),
-    // ...mapActions('tasks', [
-    //   'fetchTasksForProject',
-    // ]),
+    ...mapActions('tasks', [
+      'fetchTasksForProject',
+    ]),
   },
 };
 </script>

@@ -10,7 +10,7 @@
         xs8
         class="pl-4"
       >
-        <!--<Tasks :projectTitle="currentProject.title"></Tasks>-->
+        <Tasks :project-title="currentProject.title" />
       </v-flex>
     </v-layout>
   </v-container>
@@ -19,8 +19,7 @@
 <script>
   import { mapState } from 'vuex';
   import Projects from '~/components/Projects.vue';
-
-  // import Tasks from './../components/Tasks.vue';
+  import Tasks from '~/components/Tasks.vue';
 
   // @ is an alias to /src
   export default {
@@ -28,7 +27,7 @@
     middleware: 'userAuth',
     components: {
       Projects,
-      // Tasks,
+      Tasks,
     },
     computed: {
       ...mapState('projects', [

@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 export const state = () => ({
   projects: [],
   newProjectName: null,
