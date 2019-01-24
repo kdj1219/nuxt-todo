@@ -16,8 +16,10 @@ let cookieStorage = {
 export default ({ store }) => {
   createPersistedState({
     key: 'my_vuex',
-    storage: cookieStorage,
-    getState: cookieStorage.getItem,
-    setState: cookieStorage.setItem
+    storage: sessionStorage,
+    // storage: localStorage,
+    // storage: cookieStorage,
+    // getState: cookieStorage.getItem,
+    // setState: cookieStorage.setItem
   })(store);
 };
