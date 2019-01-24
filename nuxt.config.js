@@ -46,7 +46,7 @@ module.exports = {
     '@/plugins/vee-validate',
     '@/plugins/mixin',
     '@/plugins/http',
-    // '@/plugins/localStorage',
+    { src: '@/plugins/localStorage', ssr: false }
   ],
 
   /*
