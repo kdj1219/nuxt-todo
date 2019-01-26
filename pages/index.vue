@@ -1,18 +1,20 @@
 <template>
   <v-container class="home">
-    <v-layout>
-      <v-flex xs4>
-        <Projects />
-      </v-flex>
+    <no-ssr placeholder="Loading...">
+      <v-layout>
+        <v-flex xs4>
+          <Projects />
+        </v-flex>
 
-      <v-flex
-        v-if="currentProject"
-        xs8
-        class="pl-4"
-      >
-        <Tasks :project-title="currentProject.title" />
-      </v-flex>
-    </v-layout>
+        <v-flex
+          v-if="currentProject"
+          xs8
+          class="pl-4"
+        >
+          <Tasks :project-title="currentProject.title" />
+        </v-flex>
+      </v-layout>
+    </no-ssr>
   </v-container>
 </template>
 

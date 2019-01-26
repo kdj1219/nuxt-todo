@@ -9,10 +9,9 @@ export const actions = {
   nuxtServerInit({ commit }, { req }) {
     const headerCookies = req.headers.cookie || '';
     const cookies = new Cookies(headerCookies);
-    const token = cookies.get('token');
-    if(token) {
-      commit('authentication/setToken', token);
-      // console.log('nuxtServerInit:' + token);
+    const loginUser = cookies.get('login_user');
+    if(loginUser) {
+      commit('authentication/setLoginUser', loginUser);
     }
   },
 }

@@ -1,5 +1,6 @@
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
+import md5 from 'md5';
 
 export const state = () => ({
   registerEmail: null,
@@ -9,15 +10,19 @@ export const state = () => ({
   loginPassword: null,
   loginError: null,
   token: null,
+  loginUser: null
 })
 
 export const getters = {
     isLoggedIn(state) {
-      return !!state.token;
+      return !!state.loginUser;
     },
 }
 
 export const mutations = {
+  setLoginUser(state, user) {
+    state.loginUser = user;
+  },
   setToken(state, token) {
     state.token = token;
   },
@@ -43,8 +48,9 @@ export const mutations = {
 
 export const actions = {
   logout({ commit }) {
-    cookies.remove('token');
     commit('setToken', null);
+    commit('setLoginUser', null);
+    cookies.remove('login_user');
     this.$router.push({ name: 'login' });
   },
   login({ state, commit }) {
@@ -54,7 +60,8 @@ export const actions = {
       password: state.loginPassword,
     }).then(({ data }) => {
       commit('setToken', data.token);
-      cookies.set('token', data.token);
+      commit('setLoginUser', md5(state.loginEmail));
+      cookies.set('login_user', md5(state.loginEmail));
 
       commit('setLoginEmail', null);
       commit('setLoginPassword', null);
@@ -70,7 +77,8 @@ export const actions = {
       password: state.registerPassword,
     }).then(({ data }) => {
       commit('setToken', data.token);
-      cookies.set('token', data.token);
+      commit('setLoginUser', md5(state.loginEmail));
+      cookies.set('login_user', md5(state.registerEmail));
 
       commit('setRegisterEmail', null);
       commit('setRegisterPassword', null);
