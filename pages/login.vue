@@ -53,6 +53,11 @@
         'loginError',
       ]),
     },
+    beforeCreate() {
+      if(this.$store.getters['authentication/isLoggedIn']) {
+        this.$router.push('/');
+      }
+    },
     methods: {
       ...mapMutations('authentication', [
         'setLoginEmail',
