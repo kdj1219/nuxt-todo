@@ -67,6 +67,11 @@
         'login',
       ]),
     },
+    transition: {
+      duration: '1000',
+      enterActiveClass: 'animated bounceInLeft',
+      leaveActiveClass: 'animated bounceOutRight',
+    }
   };
 </script>
 
