@@ -38,13 +38,19 @@ module.exports = {
     {src: '~/assets/style/main.scss', lang: 'scss'},
   ],
 
+  transition: {
+    name: 'page',
+    duration: '1000',
+    enterActiveClass: 'animated bounceIn',
+    leaveActiveClass: 'animated bounceOut'
+  },
+
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '@/plugins/vuetify',
     '@/plugins/vee-validate',
-    '@/plugins/mixin',
     '@/plugins/http',
     { src: '@/plugins/localStorage', ssr: false }
   ],
